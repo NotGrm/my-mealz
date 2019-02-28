@@ -1,0 +1,52 @@
+<nav class="flex justify-center mb-6">
+  <%= link_to meals_path(day: @day - 1.day), class: "text-indigo-dark px-3" do %>
+    <i class="fas fa-chevron-left fa-lg"></i>
+  <% end %>
+  <div class="text-center">
+    <p>
+      <%= time_tag @day, class: "text-xl font-semibold px-3" %>
+    </p>
+  </div>
+  <%= link_to meals_path(day: @day + 1.day), class: "text-indigo-dark px-3" do %>
+    <i class="fas fa-chevron-right fa-lg"></i>
+  <% end %>
+</nav>
+
+<% if notice %>
+  <div class="mb-4">
+    <div class="flex items-center bg-green text-white text-sm font-bold px-4 py-3">
+      <i class="fas fa-check w-4 h-4 mr-2"></i>
+      <p><%= notice %></p>
+    </div>
+  </div>
+<% end %>
+
+<div>
+  <% Meal.moments.each do |(key, moment)| %>
+    <% meal = @meals.find { |meal| meal.moment == key } %>
+
+    <div class="p-4 mb-4 bg-white rounded-sm shadow">
+      <div class="flex items-end">
+        <p class="uppercase text-grey-dark font-bold text-sm mr-2">
+          <%= moment.humanize %>
+        </p>
+        <% if meal %>
+          <%= link_to edit_meal_path(meal), class: "text-indigo-dark" do %>
+            <i class="fas fa-pen fa-sm"></i>
+          <% end %>
+        <% else %>
+          <%= link_to new_meal_path(eaten_on: @day, moment: moment), class: "text-indigo-dark" do %>
+            <i class="fas fa-plus fa-sm"></i>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div>
+        <% if meal %>
+          <%= simple_format(meal.content) %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+

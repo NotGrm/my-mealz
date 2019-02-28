@@ -31,3 +31,8 @@
 
 en:
   hello: "Hello world"
+
+  helpers:
+    label:
+      meal:
+        content: "What did you eat during this meal?"
