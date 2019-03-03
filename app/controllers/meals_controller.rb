@@ -9,6 +9,11 @@ class MealsController < ApplicationController
     @day = params[:day].try { |str| Date.iso8601(str) } || Date.today
     @days = @day.at_beginning_of_week..@day.at_end_of_week
     @meals = Meal.where(eaten_on: @days)
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @meals.order(:eaten_on).to_csv, filename: "meals-#{Date.today.cweek}.csv" }
+    end
   end
 
   def show
