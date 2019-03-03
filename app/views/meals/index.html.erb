@@ -1,14 +1,18 @@
 <nav class="flex justify-center mb-6">
-  <%= link_to meals_path(week: @week - 1.week), class: "text-indigo-dark px-3" do %>
+  <%= link_to meals_path(day: @day - 1.week), class: "text-indigo-dark px-3" do %>
     <i class="fas fa-chevron-left fa-lg"></i>
   <% end %>
   <div class="text-center">
     <p>
-      From <%= time_tag @week.at_beginning_of_week, l(@week.at_beginning_of_week, format: :short), class: "text-xl font-semibold px-3" %>
-      To <%= time_tag @week.at_end_of_week, l(@week.at_end_of_week, format: :short), class: "text-xl font-semibold px-3" %>
+      <%= time_tag @day.at_beginning_of_week, class: "text-xl font-semibold px-3" do %>
+        From <%= l(@day.at_beginning_of_week, format: :short) %>
+      <% end %>
+      <%= time_tag @day.at_end_of_week, class: "text-xl font-semibold px-3" do %>
+        To <%= l(@day.at_end_of_week, format: :short) %>
+      <% end %>
     </p>
   </div>
-  <%= link_to meals_path(week: @week + 1.week), class: "text-indigo-dark px-3" do %>
+  <%= link_to meals_path(day: @day + 1.week), class: "text-indigo-dark px-3" do %>
     <i class="fas fa-chevron-right fa-lg"></i>
   <% end %>
 </nav>

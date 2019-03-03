@@ -1,11 +1,13 @@
 class MealsController < ApplicationController
   before_action :set_meal, only: [:edit, :update]
+  before_action :redirect_mobile_users, only: [:index]
+  before_action :redirect_desktop_users, only: [:show]
 
   # GET /meals
   # GET /meals.json
   def index
-    @week = params[:week].try { |str| Date.iso8601(str) } || Date.today
-    @days = @week.at_beginning_of_week..@week.at_end_of_week
+    @day = params[:day].try { |str| Date.iso8601(str) } || Date.today
+    @days = @day.at_beginning_of_week..@day.at_end_of_week
     @meals = Meal.where(eaten_on: @days)
   end
 
@@ -64,5 +66,14 @@ class MealsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def meal_params
       params.require(:meal).permit(:eaten_on, :content, :moment)
+    end
+
+    def redirect_mobile_users
+      # redirect_to(action: 'show', id: Date.today.iso8601) if browser.device.mobile?
+      redirect_to meal_url(Date.today) if browser.device.mobile?
+    end
+
+    def redirect_desktop_users
+      redirect_to meals_url(day: params[:id]) unless browser.device.mobile?
     end
 end
