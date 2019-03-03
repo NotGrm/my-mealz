@@ -36,6 +36,26 @@
   * @import "components/forms";
   */
 
+  .btn {
+    @apply cursor-pointer font-semibold py-2 px-4 rounded-sm no-underline;
+  }
+
+  .btn--indigo {
+    @apply bg-indigo text-white;
+  }
+
+  .btn--indigo:hover {
+    @apply bg-indigo-dark;
+  }
+
+  .btn--green {
+    @apply bg-green text-white;
+  }
+
+  .btn--green:hover {
+    @apply bg-green-dark;
+  }
+
  /**
   * This injects all of Tailwind's utility classes, generated based on your
   * config file.

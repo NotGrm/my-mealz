@@ -1,4 +1,4 @@
-<nav class="flex justify-center mb-6">
+<header class="flex justify-center mb-6">
   <%= link_to meals_path(day: @day - 1.week), class: "text-indigo-dark px-3" do %>
     <i class="fas fa-chevron-left fa-lg"></i>
   <% end %>
@@ -15,14 +15,21 @@
   <%= link_to meals_path(day: @day + 1.week), class: "text-indigo-dark px-3" do %>
     <i class="fas fa-chevron-right fa-lg"></i>
   <% end %>
+</header>
+
+<nav class="container mx-auto mb-6 text-center">
+  <%= link_to meals_path(day: @day, format: :csv), class: 'btn btn--green text-sm' do %>
+    <i class="fas fa-download fa-fw"></i>
+    Export to CSV
+  <% end %>
 </nav>
 
-<div class="px-2 overflow-x-scroll">
+<div class="px-2 overflow-x-scroll mb-6">
   <div class="flex -mx-2">
     <% @days.each do |day|%>
       <% day_meals = @meals.select {|meal| meal.eaten_on == day} %>
 
-      <div class="w-1/7 px-1 flex-no-shrink">
+      <div class="w-1/5 px-1 flex-no-shrink">
         <header class="text-center font-bold">
           <%= time_tag day, l(day, format: "%A") %>
         </header>
