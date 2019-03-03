@@ -4,7 +4,10 @@ class MealsController < ApplicationController
   # GET /meals
   # GET /meals.json
   def index
-    @day = params[:day].try {|str| Date.parse(str) } || Date.today
+    @week = params[:week].try { |str| Date.iso8601(str) } || Date.today
+    @days = @week.at_beginning_of_week..@week.at_end_of_week
+    @meals = Meal.where(eaten_on: @days)
+  end
     @meals = Meal.where(eaten_on: @day)
   end
 
