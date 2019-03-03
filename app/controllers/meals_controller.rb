@@ -8,6 +8,9 @@ class MealsController < ApplicationController
     @days = @week.at_beginning_of_week..@week.at_end_of_week
     @meals = Meal.where(eaten_on: @days)
   end
+
+  def show
+    @day = Date.parse(params[:id])
     @meals = Meal.where(eaten_on: @day)
   end
 
