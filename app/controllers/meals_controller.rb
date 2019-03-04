@@ -1,4 +1,5 @@
 class MealsController < ApplicationController
+  before_action :authorize
   before_action :set_meal, only: [:edit, :update]
   before_action :redirect_mobile_users, only: [:index]
   before_action :redirect_desktop_users, only: [:show]
