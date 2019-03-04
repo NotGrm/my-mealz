@@ -1,31 +1,28 @@
+<% Meal.moments.each_key do |moment| %>
+  <% meal = meals.find { |meal| meal.moment == moment } %>
 
-<div>
-  <% Meal.moments.each_key do |moment| %>
-    <% meal = meals.find { |meal| meal.moment == moment } %>
+  <div class="p-2 mb-2 bg-white rounded-sm shadow">
+    <div class="flex items-end">
+      <p class="uppercase text-grey-dark font-bold text-sm mr-2">
+        <%= moment.humanize %>
+      </p>
+      <% if meal %>
+        <%= link_to edit_meal_path(meal), class: "text-indigo-dark" do %>
+          <i class="fas fa-pen fa-sm"></i>
+        <% end %>
+      <% else %>
+        <%= link_to new_meal_path(eaten_on: day, moment: moment), class: "text-indigo-dark" do %>
+          <i class="fas fa-plus fa-sm"></i>
+        <% end %>
+      <% end %>
+    </div>
 
-    <div class="p-2 mb-2 bg-white rounded-sm shadow">
-      <div class="flex items-end">
-        <p class="uppercase text-grey-dark font-bold text-sm mr-2">
-          <%= moment.humanize %>
-        </p>
+    <div class="overflow-y-scroll <%= moment.include?('snack') ? 'h-12' : 'h-24' %>">
+      <div class="text-xs">
         <% if meal %>
-          <%= link_to edit_meal_path(meal), class: "text-indigo-dark" do %>
-            <i class="fas fa-pen fa-sm"></i>
-          <% end %>
-        <% else %>
-          <%= link_to new_meal_path(eaten_on: day, moment: moment), class: "text-indigo-dark" do %>
-            <i class="fas fa-plus fa-sm"></i>
-          <% end %>
+          <%= simple_format(meal.content) %>
         <% end %>
       </div>
-
-      <div class="overflow-y-scroll <%= moment.include?('snack') ? 'h-12' : 'h-24' %>">
-        <div class="text-xs">
-          <% if meal %>
-            <%= simple_format(meal.content) %>
-          <% end %>
-        </div>
-      </div>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>
