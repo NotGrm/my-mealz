@@ -37,15 +37,19 @@
   */
 
   .btn {
-    @apply cursor-pointer font-semibold py-2 px-4 rounded-sm no-underline;
+    @apply cursor-pointer no-underline;
+    @apply py-1-5 px-3;
+    @apply font-semibold leading-normal;
+    @apply border border-transparent border-solid rounded-sm;
   }
 
   .btn--indigo {
-    @apply bg-indigo text-white;
+    @apply bg-indigo text-white border-indigo;
   }
 
   .btn--indigo:hover {
     @apply bg-indigo-dark;
+    @apply border-indigo-darker;
   }
 
   .btn--green {
@@ -54,6 +58,14 @@
 
   .btn--green:hover {
     @apply bg-green-dark;
+  }
+
+  .btn--block {
+    @apply w-full block;
+  }
+
+  .form-group {
+    @apply mb-4;
   }
 
  /**
