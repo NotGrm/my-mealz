@@ -17,11 +17,22 @@
   <% end %>
 </header>
 
-<nav class="container mx-auto mb-6 text-center">
-  <%= link_to meals_path(day: @day, format: :csv), class: 'btn btn--green text-sm' do %>
-    <i class="fas fa-download fa-fw"></i>
-    Export to CSV
-  <% end %>
+<nav class="container mx-auto mb-6">
+  <div class="flex justify-around">
+    <div class="flex-1"></div>
+    <div class="flex-1 text-center">
+      <%= link_to meals_path(day: @day, format: :csv), class: 'btn btn--green text-sm' do %>
+        <i class="fas fa-download fa-fw"></i>
+        Export to CSV
+      <% end %>
+    </div>
+    <div class="flex-1 text-right">
+      <%= link_to logout_path, method: :delete, class: 'text-red-dark text-sm hover:text-red-light' do %>
+        Log Out
+        <i class="fas fa-sign-out-alt fa-fw"></i>
+      <% end %>
+    </div>
+  </div>
 </nav>
 
 <div class="px-2 overflow-x-scroll mb-6">
@@ -33,7 +44,9 @@
         <header class="text-center font-bold">
           <%= time_tag day, l(day, format: "%A") %>
         </header>
-        <%= render "day_meals", meals: day_meals, day: day %>
+        <div>
+          <%= render "day_meals", meals: day_meals, day: day %>
+        </div>
       </div>
     <% end %>
   </div>
