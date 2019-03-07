@@ -1,6 +1,8 @@
 require 'csv'
 
 class Meal < ApplicationRecord
+  belongs_to :user
+
   enum moment: {
     breakfast: 'breakfast',
     morning_snack: 'morning_snack',

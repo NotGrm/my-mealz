@@ -9,7 +9,7 @@ class MealsController < ApplicationController
   def index
     @day = params[:day].try { |str| Date.iso8601(str) } || Date.today
     @days = @day.at_beginning_of_week..@day.at_end_of_week
-    @meals = Meal.where(eaten_on: @days)
+    @meals = Meal.where(user: current_user, eaten_on: @days)
 
     respond_to do |format|
       format.html
@@ -19,7 +19,7 @@ class MealsController < ApplicationController
 
   def show
     @day = Date.parse(params[:id])
-    @meals = Meal.where(eaten_on: @day)
+    @meals = Meal.where(user: current_user, eaten_on: @day)
   end
 
   # GET /meals/new
@@ -36,7 +36,9 @@ class MealsController < ApplicationController
   # POST /meals
   # POST /meals.json
   def create
-    @meal = Meal.new(meal_params)
+    @meal = Meal.new(meal_params) do |m|
+      m.user = current_user
+    end
 
     respond_to do |format|
       if @meal.save
@@ -75,7 +77,6 @@ class MealsController < ApplicationController
     end
 
     def redirect_mobile_users
-      # redirect_to(action: 'show', id: Date.today.iso8601) if browser.device.mobile?
       redirect_to meal_url(Date.today) if browser.device.mobile?
     end
 
