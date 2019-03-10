@@ -1,8 +1,8 @@
-<nav class="flex justify-center mb-6">
+<nav class="flex justify-center items-center mb-6">
   <%= link_to meal_path(@day - 1.day), class: "text-indigo-dark px-3" do %>
     <i class="fas fa-chevron-left fa-lg"></i>
   <% end %>
-  <div class="text-center">
+  <div class="text-center uppercase">
     <p>
       <%= time_tag @day, class: "text-xl font-semibold px-3" %>
     </p>
