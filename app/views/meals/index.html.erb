@@ -1,15 +1,10 @@
-<header class="flex justify-center mb-6">
+<header class="flex justify-center mb-6 items-center">
   <%= link_to meals_path(day: @day - 1.week), class: "text-indigo-dark px-3" do %>
     <i class="fas fa-chevron-left fa-lg"></i>
   <% end %>
-  <div class="text-center">
-    <p>
-      <%= time_tag @day.at_beginning_of_week, class: "text-xl font-semibold px-3" do %>
-        From <%= l(@day.at_beginning_of_week, format: :short) %>
-      <% end %>
-      <%= time_tag @day.at_end_of_week, class: "text-xl font-semibold px-3" do %>
-        To <%= l(@day.at_end_of_week, format: :short) %>
-      <% end %>
+  <div class="text-center px-3">
+    <p class="text-xl font-semibold uppercase">
+      <%= raw t('.title', from: time_tag(@day.at_beginning_of_week, format: :short), to: time_tag(@day.at_end_of_week, format: :short))  %>
     </p>
   </div>
   <%= link_to meals_path(day: @day + 1.week), class: "text-indigo-dark px-3" do %>
@@ -23,12 +18,12 @@
     <div class="flex-1 text-center">
       <%= link_to meals_path(day: @day, format: :csv), class: 'btn btn--green text-sm' do %>
         <i class="fas fa-download fa-fw"></i>
-        Export to CSV
+        <%= t('.export_csv_cta') %>
       <% end %>
     </div>
     <div class="flex-1 text-right">
       <%= link_to logout_path, method: :delete, class: 'text-red-dark text-sm hover:text-red-light' do %>
-        Log Out
+        <%= t('.signout_cta') %>
         <i class="fas fa-sign-out-alt fa-fw"></i>
       <% end %>
     </div>
@@ -41,7 +36,7 @@
       <% day_meals = @meals.select {|meal| meal.eaten_on == day} %>
 
       <div class="w-1/5 px-1 flex-no-shrink">
-        <header class="text-center font-bold">
+        <header class="text-center font-bold capitalize">
           <%= time_tag day, l(day, format: "%A") %>
         </header>
         <div>

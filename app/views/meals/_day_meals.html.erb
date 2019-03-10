@@ -1,10 +1,10 @@
-<% Meal.moments.each_key do |moment| %>
+<% Meal.moments.each_value do |moment| %>
   <% meal = meals.find { |meal| meal.moment == moment } %>
 
   <div class="p-2 mb-2 bg-white rounded-sm shadow">
     <div class="flex items-end">
       <p class="uppercase text-grey-dark font-bold text-sm mr-2">
-        <%= moment.humanize %>
+        <%= Meal.human_attribute_name("moment.#{moment}") %>
       </p>
       <% if meal %>
         <%= link_to edit_meal_path(meal), class: "text-indigo-dark" do %>

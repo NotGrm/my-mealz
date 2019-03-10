@@ -1,0 +1,13 @@
+fr:
+  activerecord:
+    models:
+      meal: 'repas'
+    attributes:
+      content: 'Contenu du repas'
+      meal/moment:
+        breakfast: 'Petit déjeuner'
+        morning_snack: 'Collation'
+        lunch: 'Déjeuner'
+        afternoon_snack: 'Collation'
+        dinner: 'Dîner'
+

@@ -1,0 +1,12 @@
+fr:
+  meals:
+    index:
+      title: 'Du %{from} au %{to}'
+      export_csv_cta: 'Télécharger en CSV'
+      signout_cta: 'Me déconnecter'
+    new:
+      title: 'Ajouter un repas'
+    edit:
+      title: 'Modifier un repas'
+    form:
+      back_label: 'Retour'

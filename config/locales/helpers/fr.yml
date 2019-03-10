@@ -1,0 +1,14 @@
+---
+fr:
+  helpers:
+    label:
+      login:
+        password: 'Mot de passe'
+      meal:
+        content: "Qu'avez-vous mangé durant ce repas ?"
+    submit:
+      login:
+        submit: 'Se connecter'
+      meal:
+        create: 'Enregistrer ce %{model}'
+        update: 'Modifier ce %{model}'

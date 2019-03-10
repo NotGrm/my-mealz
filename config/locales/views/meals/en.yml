@@ -1,0 +1,12 @@
+en:
+  meals:
+    index:
+      title: 'From %{from} to %{to}'
+      export_csv_cta: 'Export in CSV'
+      signout_cta: 'Log me out'
+    new:
+      title: 'Add meal'
+    edit:
+      title: 'Edit meal'
+    form:
+      back_label: 'Go back'

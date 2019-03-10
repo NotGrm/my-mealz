@@ -1,7 +1,10 @@
 <header class="mb-6">
-  <h1 class="text-xl text-center font-semibold">Editing Meal</h1>
+  <h1 class="text-xl text-center font-semibold">
+    Editing Meal
+    <%= t('.title') %>
+  </h1>
   <p class="text-sm text-grey-dark text-center">
-    <%= time_tag @meal.eaten_on %> - <%= @meal.moment.humanize %>
+    <%= time_tag @meal.eaten_on %> - <%= Meal.human_attribute_name("moment.#{@meal.moment}") %>
   </p>
 </header>
 

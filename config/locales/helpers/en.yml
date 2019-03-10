@@ -1,0 +1,12 @@
+---
+en:
+  helpers:
+    label:
+      meal:
+        content: 'What did you eat during this meal?'
+    submit:
+      login:
+        submit: 'Sign in'
+      meal:
+        create: 'Submit this %{model}'
+        update: 'Edit this %{model}'

@@ -1,35 +1,38 @@
-<%= form_with(model: meal, local: true) do |form| %>
-  <% if meal.errors.any? %>
-    <div class="mb-4">
-      <div class="flex bg-red-dark text-white text-sm font-bold px-4 py-3 rounded-sm shadow-md">
-        <div class="mr-2">
-          <i class="fas fa-exclamation-triangle fa-lg"></i>
-        </div>
-        <div>
-          <p>This meal cannot be saved:</p>
-          <ul>
-            <% meal.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
+<div class="container mx-auto">
+  <%= form_with(model: meal, local: true) do |form| %>
+    <% if meal.errors.any? %>
+      <div class="mb-4">
+        <div class="flex bg-red-dark text-white text-sm font-bold px-4 py-3 rounded-sm shadow-md">
+          <div class="mr-2">
+            <i class="fas fa-exclamation-triangle fa-lg"></i>
+          </div>
+          <div>
+            <p>This meal cannot be saved:</p>
+            <ul>
+              <% meal.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
-
-  <%= form.hidden_field :eaten_on %>
-  <%= form.hidden_field :moment %>
-
-  <div class="w-full mb-6">
-    <%= form.label :content, class: "text-center block uppercase tracking-wide text-grey-darker text-xs font-bold mb-3" %>
-    <%= form.text_area :content, rows: 10, autofocus: true, class: "appearance-none block w-full bg-white text-grey-darker border border-grey-lighter rounded-sm py-4 px-5 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-grey" %>
-  </div>
-
-  <div class="actions flex justify-between items-center">
-    <%= link_to meals_path(day: @meal.eaten_on), class: "text-xs text-indigo-darker hover:text-indigo-darkest no-underline mr-2" do %>
-      <i class="fas fa-arrow-left fa-fw"></i>
-      Go Back
     <% end %>
-    <%= form.submit class: "btn btn--indigo" %>
-  </div>
-<% end %>
+
+    <%= form.hidden_field :eaten_on %>
+    <%= form.hidden_field :moment %>
+
+    <div class="w-full mb-6">
+      <%= form.label :content, class: "text-center block uppercase tracking-wide text-grey-darker text-xs font-bold mb-3" %>
+      <%= form.text_area :content, rows: 10, autofocus: true, class: "appearance-none block w-full bg-white text-grey-darker border border-grey-lighter rounded-sm py-4 px-5 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-grey" %>
+    </div>
+
+    <div class="actions flex justify-between items-center">
+      <%= link_to meals_path(day: @meal.eaten_on), class: "text-xs text-indigo-darker hover:text-indigo-darkest no-underline mr-2" do %>
+        <i class="fas fa-arrow-left fa-fw"></i>
+        <%= t('.back_label') %>
+      <% end %>
+      <%= form.submit class: "btn btn--indigo" %>
+    </div>
+
+  <% end %>
+</div>

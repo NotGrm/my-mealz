@@ -1,0 +1,6 @@
+en:
+  activerecord:
+    attributes:
+      meal/moment:
+        morning_snack: 'Snack'
+        afternoon_snack: 'Snack'
