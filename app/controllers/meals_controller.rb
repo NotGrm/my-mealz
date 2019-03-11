@@ -13,7 +13,7 @@ class MealsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv { send_data @meals.order(:eaten_on).to_csv, filename: "meals-#{Date.today.cweek}.csv" }
+      format.csv { send_data @meals.order(:eaten_on).to_csv, filename: "meals-#{@day.cweek}.csv" }
     end
   end
 
