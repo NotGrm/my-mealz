@@ -31,15 +31,16 @@
 </nav>
 
 <div class="px-2 overflow-x-scroll mb-6">
-  <div class="flex -mx-2">
-    <% @days.each do |day|%>
-      <% day_meals = @meals.select {|meal| meal.eaten_on == day} %>
+  <div>
+    <% @days.each do |day| %>
+      <% day_meals = @meals.select { |meal| meal.eaten_on == day } %>
 
-      <div class="w-1/5 px-1 flex-no-shrink">
-        <header class="text-center font-bold capitalize">
+      <div>
+        <header class="text-left font-bold uppercase">
           <%= time_tag day, l(day, format: "%A") %>
         </header>
-        <div>
+
+        <div class="flex flex-row -mx-2">
           <%= render "day_meals", meals: day_meals, day: day %>
         </div>
       </div>
